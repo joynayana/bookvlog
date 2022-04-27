@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<html lang="">
+<head>
+<title>Galaxy store</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href=" {% static 'hm/layout/styles/layout.css' %} " rel="stylesheet" type="text/css" media="all">
+<style>
+  .bgcolorset
+  {
+    height:750px;
+    background-position:center bottom;
+    background-repeat:no-repeat;
+    background-size:cover;
+  }
+   #bg
+   {
+    background-color:white;
+      color:black;
+   }
+.one_third{
+    float:inherit;
+    }
+</style>
+</head>
+<body id="top">
+<!-- Top Background Image Wrapper -->
+
+  <!-- ################################################################################################ -->
+  <div class="wrapper row1">
+    <div id="bg">
+  <main class="hoc container clear">
+
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+
+    <section id="introblocks">
+      <ul class="nospace group btmspace-80">
+          {% for i in prod %}
+            <li class="one_third">
+              <figure><a class="imgover" href={{i.get_url}}><br><br><img src="{{i.img.url}}" alt="img" style="width:500%;height:300px;"></a>
+                <figcaption id="hd">
+                  <h5 class="heading">{{i.name}}</h5>
+                  <p>{{i.desc|truncatewords:15}}</p>
+                  <p>Price:₹{{i.price}}</p>
+                  <p>Stock left:{{i.stock}}</p>
+                </figcaption>
+              </figure>
+            </li>
+            {% empty %}
+              <div style="float:center;">
+                <p style="color:red;text-align:center;font-size:30px;font-family:Futara;"><b>Your search    '{{qr}}'  did not match any books.</b></p>
+               <p>Suggestions:</p>
+                 <ul style="list-style-type:none;">
+                  <li>Make sure all words are spelled correctly.</li>
+                  <li>Try different keywords.</li>
+                  <li>Try fewer keywords.</li>
+                </ul>
+              </div>
+          {% endfor %}
+      </ul>
+    </section>
+    <!-- ################################################################################################ -->
+    <hr class="btmspace-80">
+<!--    ################################################################################################-->
+    <!-- / main body -->
+    <div class="clear"></div>
+  </main>
+</div>
+<a id="backtotop" href="#top"><i class="fas fa-chevron-up"></i></a>
+<!-- JAVASCRIPTS -->
+<script src="{% static  'hm/layout/scripts/jquery.min.js' %}"></script>
+<script src="{% static  'hm/layout/scripts/jquery.backtotop.js' %}"></script>
+<script src="{% static  'hm/layout/scripts/jquery.mobilemenu.js' %}"></script></div>
+</body>
+</html>
+{% endblock %}
+<!--        <li class="one_third">-->
+<!-- <li class="one_quarter">-->

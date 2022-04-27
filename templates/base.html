@@ -1,0 +1,64 @@
+{% load static %}
+<html lang="">
+<!-- To declare your language - read more here: https://www.w3.org/International/questions/qa-html-language-declarations -->
+<head>
+<title>Galaxy store</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href=" {% static 'hm/layout/styles/layout.css' %} " rel="stylesheet" type="text/css" media="all">
+  <style>
+    .badge {
+  padding-left: 9px;
+  padding-right: 9px;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  border-radius: 9px;
+}
+
+.label-warning[href],
+.badge-warning[href] {
+  background-color: #c67605;
+}
+#lblCartCount {
+    font-size: 12px;
+    background: #ff0000;
+    color: #fff;
+    padding: 0 5px;
+    vertical-align: top;
+    margin-left: -10px;
+}
+  </style>
+</head>
+<body id="top">
+  <div class="wrapper row1">
+    <header id="header" class="hoc clear">
+      <div id="logo" class="fl_left">
+        <!-- ################################################################################################ -->
+        <h1><a href="/">GALAXY BOOKS</a></h1>
+        <!-- ################################################################################################ -->
+      </div>
+      <nav id="mainav" class="fl_right">
+        <!-- ################################################################################################ -->
+        <ul class="clear">
+          <li class="active"><a href="/">Home</a></li>
+          {% if user.is_authenticated %}
+          <li>welcome {{user.username}}</li>
+          <li class="active"><a href="{% url 'logout' %}">Logout</a></li>
+          <li class="active"><a href="{% url 'cartDetails' %}"><i class="fa fa-shopping-cart" style="font-size:20px;color:#DF9505;"></i>}<span class='badge badge-warning' id='lblCartCount'> {{itc}}</span>&nbsp;Cart</a></li>
+          {% else %}
+          <li class="active"><a href="{% url 'login' %}">Login</a></li>
+          <li class="active"><a href="{% url 'register' %}">Register</a></li>
+          <li class="active"><a href="{% url 'cartDetails' %}"><i class="fa fa-shopping-cart" style="font-size:20px;color:#DF9505;"></i></span>&nbsp;Cart</a></li>
+          {% endif %}
+
+<!--           <li class="drop"><a href="#">Cart</a></li>-->
+        </ul>
+        <!-- ################################################################################################ -->
+      </nav>
+    </header>
+  </div>
+</div>
+{% block content %}
+{% endblock %}
+</body>
+</html>

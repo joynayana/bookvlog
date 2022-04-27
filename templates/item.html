@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />
+    <link href="{% static  'pr/fontawesome/css/all.min.css' %}" rel="stylesheet" />
+    <link href="{% static  'pr/css/templatemo-comparto.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Product Details</title>
+</head>
+
+<body>
+    <!-- Back to top button -->
+    <div style="background-color:white;height:1000px;">
+    <a id="button"><i class="fas fa-angle-up fa-2x"></i></a>
+    <div class="container-fluid"><br><br>
+        <section class="tm-mb-1" id="about">
+            <div class="tm-row tm-about-row">
+                <div class="tm-section-1-l">
+                    <img src="{{prod.img.url}}" alt="About image" class="tm-img-responsive" style="width:1000px;height:700px;">
+                </div>
+                <article class="tm-section-1-r tm-bg-color-8"  style="width:800px;height:1000px;margin-left:-20px;padding-left:20px;">
+                     <h1 class="tm-mb-2 tm-title-color" style="color:#bd0b75;"><b>{{prod.name}}</b></h1>
+                     <p><b>By : </b><i style="color:#bd0b75;">{{prod.author}}(Author)</i></p>
+                     <p ><b style="color:#990000;">Category:</b> {{prod.category}}</p>
+                     <p style="color:#990000;"><b>About the book:</b></p>
+                     <p>About the book:{{prod.desc|truncatewords:30}}</p>
+                     <p style="color:red;"><b>₹{{prod.price}}</b></p>
+                     {% if prod.stock > 0 %}
+                       <p>Stock: {{prod.stock}}</p>
+                     <a href="{% url 'addcart' prod.id %}" class="tm-btn tm-btn-1 tm-link-to-services"><i class="fa fa-shopping-cart" style="font-size:20px;color:white;"></i>&nbsp;ADD TO CART</a><br><br>
+                     {% else %}
+                      <h2 style="color:red;">Sorry No Stock Left</h2>
+                      {% endif %}
+                    <div></div>
+                 </article>
+<!--                <div><p style="float:left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></div>-->
+
+            </div>
+        </section>
+    </div> <!-- .container -->
+    <script src="{% static  'pr/js/jquery.min.js' %}"></script> <!-- https://jquery.com/download/ -->
+    <script src="{% static  'pr/js/imagesloaded.pkgd.min.js' %}"></script> <!-- https://imagesloaded.desandro.com/ -->
+    <script src="{% static  'pr/js/isotope.pkgd.min.js' %}"></script> <!-- https://isotope.metafizzy.co/ --><script src="{% static  'pr/js/jquery.singlePageNav.min.js' %}"></script> <!-- https://github.com/ChrisWojcik/single-page-nav -->
+    </div>
+</body>
+</html>
+{% endblock %}
